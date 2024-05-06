@@ -1,4 +1,4 @@
-const { fetchProvidersPositionComposition } = require('./src/v3-amm/position-compositon-snapshot')
+const { fetchProvidersPositionComposition } = require('./src/v3-amm/positions-composition-snapshot')
 const fs = require('fs')
 const minimist = require('minimist')
 
@@ -11,13 +11,12 @@ function exportResult(data, filename) {
 async function main() {
     const args = minimist(process.argv.slice(2), opts={'string': ['pool'] });
     let result = null
-    if(args._[0] === 'v3Snapshort') {
-        const activeOnly = args.activeOnly ? true : false
-        result = await fetchProvidersPositionComposition(args.pool, 207201586, activeOnly)
+    if(args._[0] === 'posCompV3') {
+        const activeOnly = !!args.activeOnly
+        result = await fetchProvidersPositionComposition(args.pool, args.block, activeOnly)
 
     }
     if(args.output) exportResult(result, args.output)
 }
 
 main().then(() => console.log("done"))
-
