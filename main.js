@@ -1,4 +1,4 @@
-const { fetchProvidersPositionComposition } = require('./src/v3-amm/positions-composition-snapshot')
+const { fetchProvidersPositionComposition, fetchPositionsPendingFees } = require('./src/v3-amm/positions-composition-snapshot')
 const fs = require('fs')
 const minimist = require('minimist')
 
@@ -14,7 +14,10 @@ async function main() {
     if(args._[0] === 'posCompV3') {
         const activeOnly = !!args.activeOnly
         result = await fetchProvidersPositionComposition(args.pool, args.block, activeOnly)
-
+    }
+    if(args._[0] === 'posPendingFeeV3') {
+        const activeOnly = !!args.activeOnly
+        result = await fetchPositionsPendingFees(args.pool, args.block, activeOnly)
     }
     if(args.output) exportResult(result, args.output)
 }

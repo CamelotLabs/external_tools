@@ -259,4 +259,4 @@ class TickMath {
   }
 }
 
-module.exports = {MaxUint256, NEGATIVE_ONE, ZERO, ONE, Q96, Q96Bn, Q192, mostSignificantBit, mulDivRoundingUp, TickMath}
+module.exports = {MaxUint256, NEGATIVE_ONE, ZERO, ONE, Q96, Q96Bn, Q128Bn, Q192, mostSignificantBit, mulDivRoundingUp, TickMath}
