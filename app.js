@@ -7,7 +7,7 @@ const port = process.env.PORT || 3000
 app.get('/v3-composition/:pool/:block', async (req, res) => {
   const pool = req.params.pool;
   const block = req.params.block;
-  const data = await fetchProvidersPositionComposition(pool, block, true)
+  const data = await fetchProvidersPositionComposition(pool, block, false)
 
   res.setHeader('Content-Type', 'application/json');
   res.send(JSON.stringify(data))
