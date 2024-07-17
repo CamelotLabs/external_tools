@@ -47,7 +47,9 @@ function activePositionsForPairQuery(pairAddress, idGreaterThan = 0, block) {
         tickLower { tickIdx }
         tickUpper { tickIdx }
         liquidity
-        owner
+        owner {
+          id
+        }
       }, `
 
   q += '}'
@@ -108,7 +110,7 @@ async function fetchProvidersPositionComposition(liquidityAddress, block, active
     const amount0 = BigNumber.from(amountToken0Jsbi.toString())
 
     if(amount0.gt(BigNumber.from(0)) || amount1.gt(BigNumber.from(0))) {
-      const provider = getAddress(position.owner)
+      const provider = getAddress(position.owner.id)
       if(!(provider in liquidityProviders)) liquidityProviders[provider] = {
         token0Amount: BigNumber.from(0),
         token1Amount: BigNumber.from(0)
